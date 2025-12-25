@@ -1,11 +1,11 @@
 # Food DAO: A Decentralized Protocol for Semi-Fungible Food Commerce
 
-**Version:** 1.2  
+**Version:** 1.2
 **Date:** December 25, 2025  
 **Authors:** Food DAO Community (Open-Source Contributors)  
 **License:** GPL v3 (Fork Freely)  
 **Repository:** [github.com/ideo-mind/food-dao](https://github.com/ideo-mind/food-dao)  
-**Contact:** Hiro &lt;hiro@ideomind.org&gt;  
+**Contact:** Hiro &lt;hiro@ideomind.org&gt;
 
 ---
 
@@ -22,8 +22,8 @@
    - [DEX & Restricted Liquidity](#dex--restricted-liquidity)
    - [Validators & Proof of Power](#validators--proof-of-power)
 6. [User Flows](#user-flows)
-7. [Tokenomics](#tokenomics) *(See [Tokenomics.md](Tokenomics.md) for details)*
-8. [Smart Contracts](#smart-contracts) *(See [Contracts.md](Contracts.md) for code & audits)*
+7. [Tokenomics](#tokenomics) _(See [Tokenomics.md](Tokenomics.md) for details)_
+8. [Smart Contracts](#smart-contracts) _(See [Contracts.md](Contracts.md) for code & audits)_
 9. [Go-to-Market Strategy](#go-to-market-strategy)
 10. [Risks & Mitigations](#risks--mitigations)
 11. [Roadmap](#roadmap)
@@ -37,16 +37,19 @@
 Food DAO is an open, decentralized protocol built on Ethereum-compatible chains (e.g., Polygon) that reimagines food commerce as a semi-fungible, P2P DeFi primitive. Using ERC-404 tokens for fractional ownership of food items, it enables seamless exchanges—from full meals (NFTs) to shared portions (fungible fractions)—while reducing waste through on-chain demand signals and anti-hoarding mechanics.
 
 The protocol facilitates a collaborative ecosystem where:
+
 1. **Vendors** issue FDTs, propose them for approval, and pay a listing fee to the protocol profit pool.
 2. **Community & Validators** vote proportionally with GFD on proposals (e.g., FDT listings), using structured thresholds for fairness and efficiency.
 3. **Profits** are distributed via veToken-style power play, rewarding committed participants through GLD-weighted mechanisms.
 
 **Key Tokens**:
+
 - **FDT (Food Tokens)**: ERC-404 utility for food purchases (fractional, redeemable IRL).
 - **GFD (Governance Food DAO)**: Fixed-supply (100M) base token for voting and staking into GLD.
 - **GLD (Governance Locked Derivatives)**: ERC-404 positions for time-weighted power in validators and profit sharing.
 
 **Innovations**:
+
 - **Semi-Fungibility**: Buy/sell portions of items like DeFi liquidity.
 - **Restricted DEX**: Open buys, gated sells to prevent rugs/inflation.
 - **Proof of Power Validators**: Random selection for fair rewards; power-weighted challenges for security.
@@ -63,16 +66,19 @@ For implementation details, see [Readme.md](Readme.md); token models in [Tokenom
 Food commerce, especially at international events, is plagued by inefficiencies:
 
 ### For Event Organizers
+
 - **Inventory Blindness**: 30-40% waste from unknown demand (e.g., over-ordered croissants at conferences).
 - **Payment Silos**: Forex fees (3-10%) and delays for global attendees.
 - **Dietary Gaps**: Allergen/vegan verification buried in PDFs or language barriers.
 
 ### For Merchants & Vendors
+
 - **Settlement Drag**: 2-3% card fees + 3-5 day delays; no real-time demand.
 - **Scale Barriers**: Onboarding per-venue; cash hoarding in pop-ups.
 - **Rug Risks**: Informal trades lead to disputes or inflation in informal "tokens" (e.g., event vouchers).
 
 ### For Users (Hackers, Travelers)
+
 - **Checkout Chaos**: Lines, incompatible payments (no UPI in Cannes), trust issues ("Is this really gluten-free?").
 - **Waste Contribution**: Overbuying leads to 40% event food landfill.
 - **Inclusion Gaps**: 60% of airport traffic is international—yet payments favor locals.
@@ -86,6 +92,7 @@ Food DAO: Fractional tokens + DeFi liquidity = 40% waste reduction, 1% fees, ver
 ## The Vision: Decentralized Food Commerce
 
 Food DAO empowers a self-sustaining ecosystem of participants:
+
 1. **Vendors** drive issuance by creating and proposing FDTs for specific food items, paying a listing fee that funds the protocol's profit pool.
 2. **Community & Validators** ensure quality through proportional GFD voting on proposals, with clear thresholds for passage and early enactment to balance speed and consensus (minimum 2 voting members; 0.15 minimum support to pass; 0.51 minimum participation/quorum; 3-day vote duration; early enactment enabled at 0.67 support/0.65 quorum).
 3. **Profits** flow back via veToken-style mechanics, where GLD power (stake × time) determines shares, rewarding sustained participation.
@@ -132,9 +139,10 @@ Food DAO's stack is modular and forkable:
 ### FDT: Food Tokens (ERC-404)
 
 Semi-fungible ERC-404 tokens per food type (e.g., ShawarmaFDT.sol):
+
 - **1 Unit = Full Item** (auto-mints NFT for redemption).
 - **Fractions <1** (fungible for sharing, e.g., 0.5 shawarma).
-- **P2P Transfers**: 0.1% fee; redeem via vendor sig (burns tokens).
+- **P2P Transfers**: 1% fee; redeem via vendor sig (burns tokens).
 - **Metadata**: JSON with allergens, calories, dietary flags (IPFS-hosted).
 - **Anti-Hoarding**: Per-wallet caps (governed).
 
@@ -149,6 +157,7 @@ Issuance: Vendor-proposed and community-approved; listing fee to profit pool.
 ### GLD: Locked Derivatives (ERC-404)
 
 veToken-inspired positions:
+
 - **Mint**: Stake GFD × days → GLD with immutable power_score = stake × days.
 - **Recompose**: Adjust stake/days along invariant (e.g., 1 GFD × 1000 days ↔ 1000 GFD × 1 day).
 - **Unlock**: Expiry or recompose to minimal lock.
@@ -160,6 +169,7 @@ GLD enables committed influence: Stake × time = power.
 ### DEX & Restricted Liquidity
 
 Uniswap V3-inspired, FDT/USDC pools only:
+
 - **Open Buys**: Anyone swaps stables → FDT.
 - **Gated Sells**: Requires sufficient stake and thresholds to list or join pools (or delegate: suboptimal rates, no stake).
 - **Issuer Accountability**: Post-vote stake; low volume → slash/suspend.
@@ -170,6 +180,7 @@ Prevents rugs: Permissioned pools, validated reserves.
 ### Validators & Proof of Power
 
 Contestable set for profit distribution:
+
 - **Cap**: 200 actives (ranked by GLD power sum).
 - **Selection**: Pure random from actives per tx/epoch (fair, equal chance).
 - **Challenges**: Power-weighted—outpower or invalidate expired GLD to replace.
@@ -183,12 +194,14 @@ Ensures decentralization: Random rewards, merit-based security.
 ## User Flows
 
 ### Buyer: Acquire & Redeem Half Shawarma
+
 1. Swap USDC → 0.5 FDT (open DEX buy).
-2. P2P transfer to vendor (0.1% fee).
+2. P2P transfer to vendor (1% fee).
 3. Vendor preps partial; redeems (burns FDT).
 4. (Optional) List remainder on DEX (if thresholds met).
 
 ### Vendor: Issue FDT & Liquidate
+
 1. Issue FDT; propose to governance (pay listing fee to profit pool).
 2. Community votes (GFD proportional; min 2 voters; pass if ≥0.15 support, ≥0.51 quorum over 3 days; early enact at ≥0.67 support/≥0.65 quorum).
 3. Approved? List on DEX pool.
@@ -196,12 +209,14 @@ Ensures decentralization: Random rewards, merit-based security.
 5. Sell: Private buyback or gated list (stake/delegate).
 
 ### Community Member: Vote on Proposal
+
 1. Hold GFD; review vendor proposal (e.g., new FDT).
 2. Vote for/against (proportional to GFD; min 2 voters total).
 3. If passes (0.15 support, 0.51 quorum in 3 days), FDT live.
 4. Early? Boost support to 0.67/0.65 quorum for instant enact.
 
 ### Validator: Stake for Rewards
+
 1. Stake GFD → Mint GLD (e.g., power=3650).
 2. Stake GLD to validators → Enter set/queue.
 3. Randomly selected? Earn 0.2% fees.
@@ -215,13 +230,13 @@ Ensures decentralization: Random rewards, merit-based security.
 
 Food DAO's economics prioritize alignment and scarcity. Full details in [Tokenomics.md](Tokenomics.md), including:
 
-| Token | Supply | Utility | Incentives |
-|-------|--------|---------|------------|
-| **GFD** | 100M fixed | Proportional voting/staking | Vested contributors; no inflation |
-| **GLD** | Dynamic (positions) | Time-power for validators/profits | Short airdrops; veToken shares |
-| **FDT** | Per-food dynamic | Food fractions | Burn on redeem; DEX liquidity |
+| Token   | Supply              | Utility                           | Incentives                        |
+| ------- | ------------------- | --------------------------------- | --------------------------------- |
+| **GFD** | 100M fixed          | Proportional voting/staking       | Vested contributors; no inflation |
+| **GLD** | Dynamic (positions) | Time-power for validators/profits | Short airdrops; veToken shares    |
+| **FDT** | Per-food dynamic    | Food fractions                    | Burn on redeem; DEX liquidity     |
 
-- **Fees**: 0.1% transfers + 1% DEX → 50% validators, 30% treasury, 20% burn.
+- **Fees**: 1% transfers + 1% DEX → 50% validators, 30% treasury, 20% burn.
 - **Projections**: Year 1: €8K fees (Cannes pilot); Year 3: €450K+ (chains/airports).
 
 ---
@@ -229,6 +244,7 @@ Food DAO's economics prioritize alignment and scarcity. Full details in [Tokenom
 ## Smart Contracts
 
 Immutable, audited core (OpenZeppelin base + Pandora ERC-404):
+
 - **FoodERC404.sol**: FDT mint/transfer/redeem.
 - **GLDERC404.sol**: GLD positions (invariant enforcement).
 - **FoodDEX.sol**: Restricted pools/queues.
@@ -241,13 +257,15 @@ Deployment: Factory for forks; Polygon for low gas. Full code/audits in [Contrac
 
 ## Go-to-Market Strategy
 
-**Phase 1: Events (Q1-Q2 2026)**  
-- Cannes Pilot (April): 500 users, €50K volume, 40% waste cut.  
-- Lisbon/Devcon Mumbai: Scale to 5K users.  
+**Phase 1: Events (Q1-Q2 2026)**
 
-**Phase 2: Airports/Chains (Q3 2026+)**  
-- Mumbai Terminal: 50 vendors, fractional tourist shares.  
-- Partnerships: Starbucks India pilots.  
+- Cannes Pilot (April): 500 users, €50K volume, 40% waste cut.
+- Lisbon/Devcon Mumbai: Scale to 5K users.
+
+**Phase 2: Airports/Chains (Q3 2026+)**
+
+- Mumbai Terminal: 50 vendors, fractional tourist shares.
+- Partnerships: Starbucks India pilots.
 
 Metrics: 95% forecast accuracy; <10% validator churn. (Details in [Readme.md](Readme.md).)
 
@@ -255,12 +273,12 @@ Metrics: 95% forecast accuracy; <10% validator churn. (Details in [Readme.md](Re
 
 ## Risks & Mitigations
 
-| Risk | Probability | Mitigation |
-|------|-------------|------------|
-| **Oracle/Expiry Failures** | Medium | Chainlink for timestamps; on-chain checks. |
-| **Vote Manipulation** | Low | Proportional GFD; min voters/quorum. |
-| **Low Adoption** | Medium | Event forks + DEX airdrops. |
-| **Regulatory (MiCA/PMLA)** | Low | Utility focus; no custody. |
+| Risk                       | Probability | Mitigation                                 |
+| -------------------------- | ----------- | ------------------------------------------ |
+| **Oracle/Expiry Failures** | Medium      | Chainlink for timestamps; on-chain checks. |
+| **Vote Manipulation**      | Low         | Proportional GFD; min voters/quorum.       |
+| **Low Adoption**           | Medium      | Event forks + DEX airdrops.                |
+| **Regulatory (MiCA/PMLA)** | Low         | Utility focus; no custody.                 |
 
 Full analysis in [Tokenomics.md](Tokenomics.md).
 
@@ -281,7 +299,7 @@ Community-driven: Vote upgrades via GFD.
 
 Food DAO democratizes food commerce: Fractional, fair, forkable. Vendors propose, community votes with GFD, power shares profits—via GLD veToken play. No more waste, no more walls— just P2P plates and decentralized dinners.
 
-Join: Stake GFD, vote proposals, fork the future.  
+Join: Stake GFD, vote proposals, fork the future.
 
 **Next: [Readme.md](Readme.md) for quickstart; [Tokenomics.md](Tokenomics.md) for models; [Contracts.md](Contracts.md) for devs.**
 
@@ -294,8 +312,8 @@ Join: Stake GFD, vote proposals, fork the future.
 - PoS Contestability: Ethereum Validator Docs
 - Food Waste Stats: FAO Reports (2023)
 
-**Contact:** Hiro &lt;hiro@ideomind.org&gt;  
+**Contact:** Hiro &lt;hiro@ideomind.org&gt;
 
 ---
 
-*This whitepaper is open-source. Contributions welcome via GitHub. Version 1.2—Iterate with us.*
+_This whitepaper is open-source. Contributions welcome via GitHub. Version 1.2—Iterate with us._

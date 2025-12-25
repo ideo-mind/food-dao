@@ -4,7 +4,7 @@
 
 **Decentralized Semi-Fungible Food Commerce Protocol**
 
-Food DAO is an open-source, forkable protocol for P2P food exchanges using ERC-404 tokens. Vendors issue fractional FDTs (Food Tokens), community votes via GFD (Governance Food DAO), and committed holders earn via GLD (Locked Derivatives) power. Cut waste, slash fees (0.1% transfers + 1% DEX), redeem IRL—built for events like ETHGlobal Cannes.
+Food DAO is an open-source, forkable protocol for P2P food exchanges using ERC-404 tokens. Vendors issue fractional FDTs (Food Tokens), community votes via GFD (Governance Food DAO), and committed holders earn via GLD (Locked Derivatives) power. Cut waste, slash fees (1% transfers + 1% DEX), redeem IRL—built for events like ETHGlobal Cannes.
 
 - **No KYC/KYB**: Pure DeFi—self-sovereign.
 - **veToken-Inspired**: Stake × time = power for profits/validators.
@@ -73,4 +73,4 @@ GPL v3—fork freely, but share alike. No warranties; use at own risk.
 
 ---
 
-*Built by the community, for the fork. Let's eat DeFi.* 🚀
+_Built by the community, for the fork. Let's eat DeFi._ 🚀
